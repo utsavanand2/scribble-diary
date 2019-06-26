@@ -17,7 +17,6 @@ package cmd
 
 import (
 	"context"
-	"flag"
 	"io/ioutil"
 
 	"github.com/sirupsen/logrus"
@@ -37,7 +36,8 @@ and generating a captioned image file from it.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		text, _ := cmd.Flags().GetString("caption")
 		output, _ := cmd.Flags().GetString("output")
-		create(context.Background(), text, output)
+		server, _ := cmd.Flags().GetString("server")
+		create(context.Background(), text, output, server)
 	},
 }
 
@@ -55,17 +55,14 @@ func init() {
 	// createCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	createCmd.Flags().StringP("caption", "c", "My Scribble Diary", "input text to be used as caption for the image")
 	createCmd.Flags().StringP("output", "o", "image.png", "path to the output file")
+	createCmd.Flags().StringP("server", "s", "35.232.69.118:80", "IPv4 + port address of the scribble-server")
 
 }
 
-func create(ctx context.Context, text, output string) {
-	backend := flag.String("b", "localhost:8080", "Scribble backend")
-
-	flag.Parse()
-
-	conn, err := grpc.Dial(*backend, grpc.WithInsecure())
+func create(ctx context.Context, text, output, server string) {
+	conn, err := grpc.Dial(server, grpc.WithInsecure())
 	if err != nil {
-		logrus.Fatalf("could not connect to %s: %v", *backend, err)
+		logrus.Fatalf("could not connect to %s: %v", server, err)
 	}
 	defer conn.Close()
 
