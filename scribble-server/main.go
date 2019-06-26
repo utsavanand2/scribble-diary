@@ -18,7 +18,7 @@ import (
 type textToImageServer struct{}
 
 func main() {
-	port := flag.Int("p", 8080, "port to listen on")
+	port := flag.Int("p", 80, "port to listen on")
 	flag.Parse()
 
 	logrus.Infof("Server listening on port %d", *port)
