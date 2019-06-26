@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package scribble;
+
+service TextToImage {
+    rpc convert(ImageSpec) returns(Image) {}
+}
+
+message ImageSpec {
+    string text = 1;
+    int32 fontsize = 2;
+    int32 imgsize = 3;
+}
+
+message Image {
+    bytes Image = 1; 
+}
