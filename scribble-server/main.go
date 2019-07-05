@@ -49,7 +49,7 @@ func (textToImageServer) Convert(ctx context.Context, imgspc *scribble.ImageSpec
 		}
 	}()
 
-	cmd := exec.Command("convert", "-size", fmt.Sprintf("%dx%d", imgspc.GetImgsize(), imgspc.GetImgsize()),
+	cmd := exec.Command("convert", "-size", fmt.Sprintf("%dx", imgspc.GetImgsize()),
 		"-background", "white", "-font", "fonts/Pacifico/Pacifico-Regular.ttf",
 		"-pointsize", "70", "-gravity", "Center",
 		fmt.Sprintf("caption:%s", imgspc.GetText()),
