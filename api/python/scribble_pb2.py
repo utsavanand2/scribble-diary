@@ -105,18 +105,18 @@ DESCRIPTOR.message_types_by_name['ImageSpec'] = _IMAGESPEC
 DESCRIPTOR.message_types_by_name['Image'] = _IMAGE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-ImageSpec = _reflection.GeneratedProtocolMessageType('ImageSpec', (_message.Message,), dict(
-  DESCRIPTOR = _IMAGESPEC,
-  __module__ = 'scribble_pb2'
+ImageSpec = _reflection.GeneratedProtocolMessageType('ImageSpec', (_message.Message,), {
+  'DESCRIPTOR' : _IMAGESPEC,
+  '__module__' : 'scribble_pb2'
   # @@protoc_insertion_point(class_scope:scribble.ImageSpec)
-  ))
+  })
 _sym_db.RegisterMessage(ImageSpec)
 
-Image = _reflection.GeneratedProtocolMessageType('Image', (_message.Message,), dict(
-  DESCRIPTOR = _IMAGE,
-  __module__ = 'scribble_pb2'
+Image = _reflection.GeneratedProtocolMessageType('Image', (_message.Message,), {
+  'DESCRIPTOR' : _IMAGE,
+  '__module__' : 'scribble_pb2'
   # @@protoc_insertion_point(class_scope:scribble.Image)
-  ))
+  })
 _sym_db.RegisterMessage(Image)
 
 
