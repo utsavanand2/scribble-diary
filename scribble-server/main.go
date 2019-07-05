@@ -11,7 +11,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/tink-ab/tempfile"
-	scribble "github.com/utsavanand2/scribble-diary/api"
+	scribble "github.com/utsavanand2/scribble-diary/api/go"
 	"google.golang.org/grpc"
 )
 

@@ -1,5 +1,5 @@
 /*
-Copyright © 2019 NAME HERE <EMAIL ADDRESS>
+Copyright © 2019 Tanishka Bhardwaj, Kumar Utsav Anand <tanishkab99@gmail.com, utsavanand2@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	scribble "github.com/utsavanand2/scribble-diary/api"
+	scribble "github.com/utsavanand2/scribble-diary/api/go"
 	"google.golang.org/grpc"
 )
 

@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/utsavanand2/scribble-diary/scribble-cli/cmd"
+import "github.com/utsavanand2/scribble-diary/scribble-cli/cmd/go-cli/subcmds"
 
 func main() {
 	cmd.Execute()
