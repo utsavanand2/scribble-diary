@@ -1,3 +1,7 @@
+# Copyright © 2019 Tanishka Bhardwaj <tanishkab99@gmail.com>
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
 import grpc
 import sys
 import os
@@ -30,6 +34,8 @@ def main():
     # The rest of the code is self explainatory
 
     # TODO: implement the cli to make this program work as a CLI tool just like it go counterpart
+
+    # try experimenting with the parameters to the convert function.
     response = stub.convert(scribble_pb2.ImageSpec(text="Hello", fontsize=70, imgsize=720))
     data = response.Image
     filename = "image.png"
