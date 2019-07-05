@@ -55,7 +55,7 @@ func init() {
 	// createCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	createCmd.Flags().StringP("caption", "c", "My Scribble Diary", "input text to be used as caption for the image")
 	createCmd.Flags().StringP("output", "o", "image.png", "path to the output file")
-	createCmd.Flags().StringP("server", "s", "35.232.69.118:80", "IPv4 + port address of the scribble-server")
+	createCmd.Flags().StringP("server", "s", "35.202.193.149:80", "IPv4 + port address of the scribble-server")
 
 }
 
