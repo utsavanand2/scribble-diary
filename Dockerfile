@@ -18,7 +18,7 @@ ADD ./fonts ./fonts
 ADD scribble .
 
 # Expose port for the scribble server to listen on
-EXPOSE 8080
+EXPOSE 80
 
 # Run the scribble server
 ENTRYPOINT [ "./scribble" ]

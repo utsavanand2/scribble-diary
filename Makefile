@@ -4,4 +4,4 @@ build:
 	rm -f scribble
 
 run:
-	docker run --rm -p 8080:8080 utsavanand2/scribble-diary:0.1
+	docker run --rm -p 8080:8080 gcr.io/utsav-talks/scribble-diary:0.1
