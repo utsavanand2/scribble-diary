@@ -1,6 +1,6 @@
 build:
 	GOOS=linux go build -o scribble "github.com/utsavanand2/scribble-diary/scribble-server"
-	docker build -t utsavanand2/scribble-diary:0.1 .
+	docker build -t gcr.io/utsav-talks/scribble-diary:0.1 .
 	rm -f scribble
 
 run:
