@@ -18,7 +18,7 @@ import scribble_pb2_grpc as scribble
 def main():
 
     # create a channel and stub to server's address and port
-    address = "35.202.193.149:80"
+    address = "scribble.kumarutsavanand.com:80"
     # a channel as the name suggests is a channel for the requests and responses 
     # as RPCs in this case to traverse through
     channel = grpc.insecure_channel(address)
