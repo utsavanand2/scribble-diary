@@ -5,7 +5,7 @@ MAINTAINER utsavanand2@gmail.com
 RUN mkdir /scribble-diary
 WORKDIR /scribble-diary
 
-ENV IMAGEMAGICK_VERSION=7.0.8.49-r2
+ENV IMAGEMAGICK_VERSION=7.0.8.58-r0
 
 # Install ImageMagick
 RUN apk update && \
