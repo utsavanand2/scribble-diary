@@ -23,7 +23,7 @@ def main():
     # as RPCs in this case to traverse through
     channel = grpc.insecure_channel(address)
     # stubs are programs that live on the client side that forwards the requests to the server as RPCs
-    # such that they the methods and function call feel like to be called locally.
+    # such that the methods and function call feel like to be called locally.
     stub = scribble.TextToImageStub(channel)
 
     # convert is a method on stub that is defined as the RPC in pur scribble.proto file that converts
