@@ -18,20 +18,25 @@ import scribble_pb2_grpc as scribble
 def main():
 
     # create a channel and stub to server's address and port
-
+    address = "scribble.kumarutsavanand.com:80"
+    
     # a channel as the name suggests is a channel for the requests and responses 
     # as RPCs in this case to traverse through
+    channel = grpc.insecure_channel(address)
 
     # stubs are programs that live on the client side that forwards the requests to the server as RPCs
     # such that the methods and function call feel like to be called locally.
-
+    stub = scribble.TextToImageStub(channel)
+    
     # convert is a method on stub that is defined as the RPC in pur scribble.proto file that converts
     # text into an image. The body of the function is written in Go and lives in a server
     #
     # The response object holds the Image data in the form of raw bytes as defined in 
     # the protocol buffer file scribble.proto.
     # The rest of the code is self explainatory
-
+    response = stub.convert(scribble_pb2.ImageSpec(text="Hello Love !",fontsize=70,imgsize=720))
+    data = response.Image
+    file_name = "Tanishka"
     # TODO: implement the cli to make this program work as a CLI tool just like it go counterpart
 
     # try experimenting with the parameters to the convert function.
@@ -40,9 +45,12 @@ def main():
     # As the open function expects strings as its argument when opened with 'w' mode.
     # We need to open our file for writing in write as bytes mode for our file.
     # As the Image is defined as a response from the RPC as a stream of bytes in the scribble.proto definition. 
+    image_file = open(file_name, 'wb')
+    image_file.write(data)
 
     # Never forget to close the file after you're done reading or writing
-
+    image_file.close()
+    
 if __name__ == '__main__':
     # calls the main function
     main()
