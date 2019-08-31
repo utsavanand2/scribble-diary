@@ -5,6 +5,7 @@
 import grpc
 import sys
 import os
+import click
 
 # Get the current directory
 current_dir = os.path.dirname(os.path.realpath(__file__))
@@ -15,8 +16,17 @@ sys.path.append(current_dir + "/../../../api/python/")
 import scribble_pb2 
 import scribble_pb2_grpc as scribble
 
-def main():
+@click.group(invoke_without_command=True)
+@click.pass_context
+def cli(ctx):
+    if ctx.invoked_subcommand is None:
+        click.echo("scribble is a cli tool that generates captioned images 🖼")
 
+@cli.command()
+@click.option('-c', '--caption', default='My Scribble Diary')
+@click.option('-t', '--textsize', default=70)
+@click.option('-i', '--imgsize', default=720)
+def create(caption, textsize, imgsize):
     # create a channel and stub to server's address and port
     address = "scribble.kumarutsavanand.com:80"
     # a channel as the name suggests is a channel for the requests and responses 
@@ -32,11 +42,7 @@ def main():
     # The response object holds the Image data in the form of raw bytes as defined in 
     # the protocol buffer file scribble.proto.
     # The rest of the code is self explainatory
-
-    # TODO: implement the cli to make this program work as a CLI tool just like it go counterpart
-
-    # try experimenting with the parameters to the convert function.
-    response = stub.convert(scribble_pb2.ImageSpec(text="Hello", fontsize=70, imgsize=720))
+    response = stub.convert(scribble_pb2.ImageSpec(text=caption, fontsize=textsize, imgsize=imgsize))
     data = response.Image
     filename = "image.png"
 
@@ -48,6 +54,11 @@ def main():
     # Never forget to close the file after you're done reading or writing
     imagefile.close()
 
+    # TODO: implement the cli to make this program work as a CLI tool just like it go counterpart
+
+    # try experimenting with the parameters to the convert function.
+
+
 if __name__ == '__main__':
     # calls the main function
-    main()
+    cli()
