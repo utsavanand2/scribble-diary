@@ -37,7 +37,13 @@ and generating a captioned image file from it.`,
 		text, _ := cmd.Flags().GetString("caption")
 		output, _ := cmd.Flags().GetString("output")
 		server, _ := cmd.Flags().GetString("server")
-		create(context.Background(), text, output, server)
+
+		// IMPORTANT! DO NOT USE GetInt32() to fetch params from cli as 32 bit int from here.
+		// Fetch the values as int and the typecast them to int32 later on when passing the values to ImageSpec struct.
+		// For some unknown reason the 32bit values fetched from here (cobra) don't behave as expected when passed into the request.
+		fontsize, _ := cmd.Flags().GetInt("textsize")
+		imagesize, _ := cmd.Flags().GetInt("imagesize")
+		create(context.Background(), text, output, server, fontsize, imagesize)
 	},
 }
 
@@ -55,11 +61,13 @@ func init() {
 	// createCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	createCmd.Flags().StringP("caption", "c", "My Scribble Diary", "input text to be used as caption for the image")
 	createCmd.Flags().StringP("output", "o", "image.png", "path to the output file")
+	createCmd.Flags().IntP("textsize", "t", 70, "Font size to use for the caption")
+	createCmd.Flags().IntP("imagesize", "i", 720, "Set the width of the image")
 	createCmd.Flags().StringP("server", "s", "scribble.kumarutsavanand.com:80", "IPv4 + port address of the scribble-server")
 
 }
 
-func create(ctx context.Context, text, output, server string) {
+func create(ctx context.Context, text, output, server string, fontsize, imagesize int) {
 	conn, err := grpc.Dial(server, grpc.WithInsecure())
 	if err != nil {
 		logrus.Fatalf("could not connect to %s: %v", server, err)
@@ -68,7 +76,7 @@ func create(ctx context.Context, text, output, server string) {
 
 	client := scribble.NewTextToImageClient(conn)
 
-	imgspec := &scribble.ImageSpec{Text: text, Fontsize: 70, Imgsize: 720}
+	imgspec := &scribble.ImageSpec{Text: text, Fontsize: int32(fontsize), Imgsize: int32(imagesize)}
 
 	res, err := client.Convert(ctx, imgspec)
 	if err != nil {
