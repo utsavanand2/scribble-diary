@@ -62,7 +62,7 @@ func (textToImageServer) Convert(ctx context.Context, imgspc *scribble.ImageSpec
 	// create a command to be executed later with cmd.Run() that will create the image from our given text
 	cmd := exec.Command("convert", "-size", fmt.Sprintf("%dx", imgspc.GetImgsize()),
 		"-background", "white", "-font", "fonts/Pacifico/Pacifico-Regular.ttf",
-		"-pointsize", "70", "-gravity", "Center",
+		"-pointsize", fmt.Sprintf("%d", imgspc.GetFontsize()), "-gravity", "Center",
 		fmt.Sprintf("caption:%s", imgspc.GetText()),
 		file.Name())
 
