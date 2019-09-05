@@ -1,6 +1,6 @@
 FROM alpine:3.10
 
-MAINTAINER utsavanand2@gmail.com
+LABEL maintainer=utsavanand2@gmail.com
 
 RUN mkdir /scribble-diary
 WORKDIR /scribble-diary
