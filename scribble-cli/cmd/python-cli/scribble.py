@@ -26,9 +26,10 @@ def cli(ctx):
 @click.option('-c', '--caption', default='My Scribble Diary')
 @click.option('-t', '--textsize', default=70)
 @click.option('-i', '--imgsize', default=720)
-def create(caption, textsize, imgsize):
+@click.option('-s', '--server', default="scribble.kumarutsavanand.com")
+def create(caption, textsize, imgsize, server):
     # create a channel and stub to server's address and port
-    address = "scribble.kumarutsavanand.com:80"
+    address = server
     # a channel as the name suggests is a channel for the requests and responses 
     # as RPCs in this case to traverse through
     channel = grpc.insecure_channel(address)
